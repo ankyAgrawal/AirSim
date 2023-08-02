@@ -1,8 +1,10 @@
 ARG BASE_IMAGE=nvidia/cudagl:10.0-devel-ubuntu18.04
 FROM $BASE_IMAGE
+RUN rm /etc/apt/sources.list.d/cuda.list
+RUN apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/7fa2af80.pub
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y --no-install-recommends \
-	python3 \
+RUN DEBIAN_FRONTEND=noninteractive apt-get update  && apt-get install -y --no-install-recommends \
+	python3.8 \
 	python3-pip \
 	sudo \
 	libglu1-mesa-dev \
@@ -12,7 +14,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y --no-ins
 
 RUN python3 -m pip install --upgrade pip && \
     pip3 install setuptools wheel && \
-    pip3 install airsim
+    pip3 install numpy airsim
 
 RUN adduser --force-badname --disabled-password --gecos '' --shell /bin/bash airsim_user && \
 	echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
