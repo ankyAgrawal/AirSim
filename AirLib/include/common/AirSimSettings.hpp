@@ -42,6 +42,7 @@ namespace airlib
         static constexpr char const* kSimModeTypeMultirotor = "Multirotor";
         static constexpr char const* kSimModeTypeCar = "Car";
         static constexpr char const* kSimModeTypeComputerVision = "ComputerVision";
+        static constexpr char const* kSimModeTypeComputerBoth = "Both";
 
         struct SubwindowSetting
         {
